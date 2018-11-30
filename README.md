@@ -17,3 +17,8 @@ Rules:
 In "def main(stdscr):" we establish the game state loop
 
 In other parts, mainly in "def GameField", we add our functions and details
+
+
+
+state pictures:
+![sp](https://github.com/YuzhengSun/EE551project_2048/blob/master/GameStates.jpg)
