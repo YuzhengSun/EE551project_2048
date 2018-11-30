@@ -1,5 +1,5 @@
 import curses
-from random import randrange, choice # generate and place new tile
+from random import randrange, choice
 from collections import defaultdict
 
 letter_codes = [ord(ch) for ch in 'WASDRQwasdrq']
@@ -14,6 +14,8 @@ def get_user_action(keyboard):
     return actions_dict[char]
 
 
+# not necessary
+# idea: shorten codes
 def transpose(field):
     return [list(row) for row in zip(*field)]
 
@@ -22,6 +24,8 @@ def invert(field):
     return [row[::-1] for row in field]
 
 
+# functions and details
+# core of the program
 class GameField(object): # this class is to realize moves in our game
     def __init__(self, height=4, width=4, win=2048):
         self.height = height
@@ -151,7 +155,7 @@ class GameField(object): # this class is to realize moves in our game
 def main(stdscr):
     def init():
         # reset game board
-        game_field.reset()
+        game_field.reset()  # details in GameField
         return 'Game'
 
     def not_game(state):
