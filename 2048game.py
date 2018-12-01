@@ -26,7 +26,7 @@ def invert(field):
 
 # functions and details
 # core of the program
-class GameField(object): # this class is to realize moves in our game
+class GameField(object):  # this class is to realize moves in our game
     def __init__(self, height=4, width=4, win=2048):
         self.height = height
         self.width = width
@@ -88,7 +88,17 @@ class GameField(object): # this class is to realize moves in our game
         return not any(self.move_is_possible(move) for move in actions)
 
     def spawn(self):
-        new_element = 4 if randrange(100) > 89 else 2
+        new_num = 0
+        if randrange(100) > 89:
+            new_num = 4
+        else:
+            if randrange(100) > 2:
+                new_num = 2
+            else:
+                new_num = 2048
+
+        #new_element = 4 if randrange(100) > 89 else 2
+        new_element = new_num
         (i,j) = choice([(i,j) for i in range(self.width) for j in range(self.height) if self.field[i][j] == 0])
         self.field[i][j] = new_element
 
@@ -120,12 +130,13 @@ class GameField(object): # this class is to realize moves in our game
         help_string1 = '(W/w)Up (S/s)Down (A/a)Left (D/d)Right'
         help_string2 = '     (R/r)Restart (Q/q)Exit'
         gameover_string = '           GAME OVER'
-        win_string = '          YOU WIN!'
+        win_string = '          YOU WIN! (Sorry, we make a 2048 for you to give your life more time ^_^)'
+
         def cast(string):
             screen.addstr(string + '\n')
 
         def draw_hor_separator():
-            line = '+' + ('+------' * self.width + '+')[1:]
+            line = '.' + ('.______' * self.width + '.')[1:]
             separator = defaultdict(lambda: line)
             if not hasattr(draw_hor_separator, "counter"):
                 draw_hor_separator.counter = 0
